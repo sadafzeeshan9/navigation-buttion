@@ -1,0 +1,60 @@
+import react from "react"
+import { readFileSync } from "fs"
+import { getRedirectStatusCodeFromError } from "next/dist/client/components/redirect"
+import Link from "next/link"
+
+
+export default function Home(){
+  return(
+    <div>
+   
+   
+    <header className="text-grey-400 body-font">
+     
+     
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        
+      <a className="flex titlefont font-medium item-center text-grey-900 mb-4 md;mb-0">
+        
+          <img
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANkAAADoCAMAAABVRrFMAAABUFBMVEX///8BAQGNh4levEL/fwCKiIn9///8///V1NSFgoOnpqaLhIabmpr5//////z//f9/fX63tLX/egD8dwCFf4H5dwD//P9dvUH8fwD9dADJycnt7e2OjI3l4+S4trf3fgDp6enDwcJJSUk/Pz9VVVUVFRUsLCysqquWlJXd29z19fVSuTFavjwNDQ0gICDHx8f206759+z2mEH46cz4jzP3vY7L58an1pXn9OFMuCyy2ac4ODhhYWF1dXVbW1t5fYHez8KmfGXUpoP5zaH23sb86uDytYD2hA77roH3n1X5iyj7mTj6rIH3tW78kyj437v5oGD2rnTz7tn5y6mze1n8j0Tzu4T5hyn08eP3l0740rf3vZf24c/1s4z4nVz3pWv5uWj9tmS/4LaAxGqb1Yh/x2hvwFi/5bap1Jyd0Izf8dqR1Yd7yGCHw3WZzYtzu1hxxxzGAAATXElEQVR4nO1d+1/a2LZPhSQEszePmBJAiKgtj2A1ijz6mHPulcro3J5WPFOtdU7P0UJ91Dv//2937cAOIAn4IAHn5vtxqkBI9jdrre9ae2UnwzAePHjw4MGDBw8ePHjw4MGDh5kFd+uvQDonhIXFYCY1rRFNDIVUIJEIJAvGi4wQDs+JQTG3EA6zmSmP7FEoZAgHgJgVxfV8Lry43qHIpNJgusR0R/cIZMJhIZvIp1L5QD5LCBpm4gDkd4INi4XpDvCBKOTCuXzf63wkMLhBKBtmU8lUKrWUdHVgj0WSDafHbZNYWFgILxDkMkvOD2kyCC2G7xBGgUgmkUisp4MgLeITkctg+H7al4JAHGvjWUAgLN73K0u5cNCJoUwYOeEBqiCGI5MfyYQReNAYQ7lwfvxW04UYtjbZmPyVCuccGMwkURBsomxpzBeD4RkXyIKdFoxztvysR5ots4D12z3ML056LJOFrTeOTd6iMOOl5KLNqR+biyPhpQkPZcIIUm28JZHZcV/MgIRw4zaaJhK0tkoNUhtbmKQXZpxZQaDuOFg9jk1XwYfULq4iu9CVwUK/jCfHKh/LOjSgiWFpgZon3ZfDAj1vtJbA/MKM5zNANrze+aPQZ6eMmeaS1szEWa9BGBJpNDMFe0lMNFXfOrEFnsQ8JkFnaHkzdEK9bpVlYksKM68fBoK0XUDFBEp5GnN5K5stseGx1ddMoEAtIFIXSy/Q6DLbcX02SghPhFivY5CmEbdI9TJPNbJgCmc+F2ZnXz0osguGPia6gteboixS49BwS4lPpL/TRWHesFagG3AiDbMM1ZRAJzMUsuFwZMZr/FtIhEkJHAhHUvl8PiGwSaMkTFFp6aa6FBsOPglN7EeOjYisIAjGZQv4JbBiJMF2oyzUccpAWHgqytGHiCDMidl0JhEAJDLpbG4eGLLB9STp+xuamQ8LS1Me5UOQGGqBc4V8RlwIh3OZjlIWWOHpSGIf0tYNxFA+woYFkThh8C7t/xlE0KbvCMhnF8Jzifz9u+Szgdyohk0hA4Z7mr5o3+mhSNs1uWYdRnfOuHpr09uwicPZx9LfsgxvAFtTYxdDLg/p4cAYh+Af+Ash/e//9d8721+/ft3e2ai/1zmOBwvyTOdjgtSsN7v7gfFzDCba2tgtKYrqj1LEJbmx+evGKQbfRKi78ZNyRozQ+509RZKiflXx90FRgakkq5s77zFlJs4/jToYHJHjm5/3CSu/wapDTVHgR1XhL/IfmK9xcMrxPIMLC09EGTmkH5YkyX8biqLs/zbwTlQ6+ryFUP5vT2NOxjX/R5XBOP0+SAIsHpeiHz78A37H4WXnfVVVpL2P67PfHuARj5qfpGh/TEWluLJ5sH1SbxYY0EIOHzdPDv/Ya8iSBMqiEMM1/pnkMU+EEnQFfJnHY4/kNjiu+U1W+r1Nbnw6aWIE4cSZqQyGDrKo17c3ZYlsDT+NQ0MnydvHx8jUzJkAR370A3BDhUZVVP59+z1YkecghenH1BCYmIUYB3H6xp4aN8RTbmzwDI83NlVw1NJXnWS8GbkWQ8Z6qJp+qKrxo8+QlEH9QVA2drfrOrIYKcfrJ5tyFERTlTbr9aN4ZweSeoh6eXzK4NDWptzzQ/nLCUbAFuH6h/3fT3QoOXSLb0FIIa55IBNCitwnOvI3fSZcEk4v2gaDqd3UJe3VEQ/hhOrfVPmgCSkLYbtimHimvq1ESbZTTenxR0tNfgaUhEPHJal7wkHHv5wiDmi93wWXPLT0wttA+q7qHyhV/FF1g5+BMnlDosqhRBt1YiBU35TipROEOJvyfhAc/1EaLMIUf3x3qjYjQod246ZwSLs6vIE29mVp/+QeI+NOZP8tqPHNYzD4tOhBbtK/UGIkOogonEDNqG6A4N9jR8PMoqpfrU9LRyArce+PaAbzS7skJ5/+LkflP3SQkPuc7pOhQnNPlRT5K2KmssgA0u2pmcQU5QSI4l9lcKPmffMsV48P8oruIn0vrqhfiHg6M/pRwwHHMwOf6HQI1RtRv7SD7yKIgziVb2njN4TRhgyKBFnDZcCcmd+I07lXfE/nET6I++VSE93/NCNd7edFZqd7OsM3N2VFPkSYczcBYL4XHPFvoIjNUlyJH6CHnGOMvkV7xGCOEIc8UodztU12STK9iwBnkYwpMpxh+QNkrroKU+bDBxjM2NtpX6A14jvHv8uKtA36egoTnn803Qs1yGOoLtO6AQyFuQ0ZdPo991At4/6lmJEW3UMM/1X2y3tVmBEcgJCccMglh4Q8dkozkCIdoBDaiavRxvEjzu2xpJo73CGWb+5Ho41ThPmPKqSR+4vSw4D544afjuQTaOEOyFhJf8ykCoxOm0Gq+hEKLg4fSFF5ByGs/0uWNnXIKS6w4/WSmcdKcH7BYuq+1UTlPvvclYlDgnTIMkxjGDJZUGX5E+YZtKOqUJC4kdr4b2ZQKMeY35DBFfVHChhCB0b3ILqjb0tywyCif5OkI0gjZDYhf36Q7N4HOMTtUL1X5C1QRUmJqsfc44o8mI6hP4goKTqGRBaXQOxBGzdUUoNCcfM5DuYjx54QC0sgU6JBmWF21oDfzQnsF3di7ZMORtqBSfZH1Km4IaPBQeuN+P4WcrT45/QjM/V8gUNtRtX4Bj+BcwmpZOuIVFR1CK1jkI0Dnby304BKlFTY3yS17iAxHIJ46BgMfFGH6ZkMVf5kZIsDaTqAvAizTpg2AKMjiDaYPpTixCPBpOqWg/rIQ1jRVr10yHFbUBSXODyZRIo5Hp00JKivt6AsJfoBM2sSZBIkTZj66XaX4CZycFRSKLNNxKH9qCo1cWgyXsIR79MPgJq8zTM8/xFiq06u7Jzux0tNDpOu5EQOZHnwpjn9lbYQ2paU+PaEzyM6LUGNv3kMBoLaKn5AOhD6blw9cVb1uS0qjFEoF48hu+5PuBQnRemhGlUUUmTh+pF8dEqafHWoRxyt+VGzE2ZQKhxjdAATjo+Ym+zJBJXgj7/JkmRM+tBniSgK4iEZOJrMMGp05WMXYTIV3nPGR1D9N5glnRBJBG3cB9l3utrn0WGnAFFB8Q9APhxqMEHZeKiq8Q/kEgfahkTg+PSTY7jPcUmSGlsQZVBW7XEOHZEzVFI6ImcOnX754MLEmuO3dnY3wOv57ag/XndOhyG5gUpCSgOX1N3oGHAwd+JJcOmQ2EoD/p8PjoPYWVwWoa8HF0wEBreDBIZ3ZKnURDzv5mUn7qOkyDuDI1uYHw16x4sodF8PXKNO9rYzVwVyx3uy/NXdriO3F23Ig9PNwPzcGHSXfojdl4NLbHP06/O9m+9IF1PZx7p7bUcO66oS/TTo/qOZsT0ilswiQne7+f471DBMLnTGKZ2yAA8zab+0M3gq7ZmRD1jBvJXHill+gZ6B6d4Yw6NPUb98q0Vgy2xeFOf7R2zBrMDSjae8DguThnXpluQnhhVEYAGLQjotLArr5oYWzMSOL7KsMOWnDiGorKK7t5ouqcgQ0iKby6wH4Y/1vhEPM8sIbNcVp333GV//9770EY8vrXJCMJ1NR9KZ/icJDTHLg207zKa+jJP/98Fv0h1ajBmIr+B6OhJZ7JfB28wKczRCLe5IwM8f2cq8H/Q/PpT2x0txEgRPXI8Qm/Xb4jazICW2YLG8jAtdTWbMd0PhPx9Kn8YXBiCJ89lMJBNJLw28PchsnQq+YLUiEDOv3byme6qAgIw9XoAIXg54ZdcH3h9kljKJWS7ixMxFdSJjvhtOpEb8ZByzgiELLLmR6dYN/v3MQotmKrNcdwvM3HTHr7Iar49jljV1YdBkg8x6W9ndanFWee5edfWrokjjro7nBVqC3H5UQT+zBPXFBdvbfs7O3Qs07pOiyOMK8Bz1soXbxuhjlqT0Bfuna5R9Ls7OSqQTMvpEZmjtLgzdaiDSTwKUPivk7PdWrrknIdyR4ldHFyDJbr0ECjJUVvRsFqFVFTuiwC/X3JIQjHlV8e+PZiZSYbBY3E2ZsUHTF0cV+OXa2SNHfFdgjBW/f3RzOECFYd6ixDWZUWJz86PWtpdrrx875DuC4/RxzHrTLaubQ8w4y9Ct5tgR95CUaxePH/SdgPFYZrapzIAZZ/l1Go1Wpu2AY37Uvk9g1HcBMPOPZmZO/YdSmYE+1e+lBrt0xjMVbXaY5aiTDaUyA33MUmao2bU/eOZ78WYi474DDAVp2Gtjxpz6W9/O01+DpOmk0+52T8yca9eTGPVdgDlgptq2N5NmkrK5eXWgblyk02nLkCQHaxddY8Zx+36/bFuDiN2xztk9jGCAWZ6eBzt/5ItFt+IMsKn6ZbsVZGYqs+3WDM7PsjTUWGt/rGra5STGfCdwe7IS37Jm1ktltreIDzIrmHpj2ZELnRWLbuUzwG7p91LdutYP5Ggeto4bZqhbkKSv5xaWLLauxDS3qisAWcFu3T9LZoLduLF/gNztDk/EvFZh9Z1WrFiewJBHw/Q/cnuF9SqQ9UiX2YinEQx15XpJbThN4GIs5uwsBpPrIldnl63W+eXFmXEsC6tlshHRYDY/4s7UoU5qone5Yuh8lIu+otMdR/zap8EJNFBsV6rM8NK1pCB0M++o5zAMd7/pnMciBV5ovraza+Se63/WfL5YzAeIFX0+Tbu5GuImkisUhskCTGEYtsySdv6ImTZJZ462C/Q/i75BFLXzamjAUcxUZpz+IdBnyllci8mY31wYmIRyVc0H0uhoh+ey5rPAj/5Neqns3sx613LnFvtoYNB8n3bs4DoXHKp2HXEQsdhln6OY1YQNRjFL0Zna3Hyk/7jtWKyNnWTGnBV9Vsx82rlJrTe4BzBjIua3+5si5ZqvdulkmGGYJFk5IxhNa9Hj5tjHMOt1wdm+1sF1saiVGQdtxjPnFhbrCsl559J/RrAILes4o68H5gJ58/u0q8oxVRLcjgrjKGY+rUI2WQoL40Cfm5qjrwdnOVlzD50HYAGjS627d8fAMdf2zHw18BcmFRiPpc7e8vT14ISs0LelcdDn1WLRpzndRq1Yx1nHH9sO3SNQ0XyxthM77oFjypotsRjxGCeYQZb2aT/Gb/cYcOQoI/wxVp34yijMMzdQDLedX2xwPoqZA11cHIJc5iu60Ph+be+OBJOeaHCM7iPFgQuXznC/hAxVWrXJT3u/g+K70ycYabTJt5euWr7rm2tn78vqAON2H5PW9SCz4mRnhxyDvl+0Xn/X3blCXdZMh4xdX/68ZTQ0ybW+HG61XrcqzpYffaiY/hg7r9xmNtlS4XULbHbh3pX3c5NapdIaLEqgIp+Y43D4B+z/4qdrK1zwc/SzS63482c75hQzzJTPK5eVyg/XFrjAyDG1VAx0P+YIM9jLhc8HatV67uLSHZjOXFu2Q8CKk5J9zFyQbFn0ubmODPCcOSta57XapKhd1sAvirErVy1mPN6qelOzKCFjRrJ+nPKTx8Kgc8MpnO7E2aDcLt4qr4zo077jRz04h9yiV22TXcVcW9syCBh/+cZohFMx0TqFZO28+phKBDP4TIsZ9n89pQdCkQfI6OXLVjumaVqs3apc6TekMw6mu2Jsn7U2Bhxm9BuDmI+s2Zny09dwtdq5zwKHLsxBPWyqCKfjzGdoU9HNC4GWIM+0Mv7jOHIFqkyCDXSk9cDKoUoKHEPunb8OeE9UW51TXoRyj7vPvYTknn29onXCtth2dRH7HYDxc+aiFjO8yVe+V1MXgvai3U2SWqvqch67A8Axr8glNtDJWvsMjb9pDONQiGxUvdSKpDFATsvF1LXDDq9rncKy5quM7YzwCDbB5XONJkcNPHFGnpA6BJ5UKB1umnZ+No4cLv9vrEZzfqxYeWwR4yTglJdbtRhJbSTgbl5XO1nBeDggeVQsZyxMIG9dnZF07+sIYptcQJ2dh9pagQNBKLdpX6Go1WI3F+Wr/hXwGOtX5cq5T6sVeyVarTVzWj8EI8WVf2pk2EapVCxCpeJrn59ff/9+fX3TqVyKHVaxLv8/y4ybt6k+CleXMahKeoUzXW0RG2pV/ry8nH17mSD5rHp2XouNapkbRb2vPVZnZgud/yOH/uO8aETToKHoohJN+7Nzn9IT8cNB4KtKy1fTDE80FgAZvGJaTWt/P3vsk82mCM6QBb364wLmPB3BKPrare+VsysdRBSHZuBZ0Q9HL/lyGKHeoxjh/dDMlhwePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8ePHjw4MGDBw8eZgzP/qrwmD09DDDLT2sUTqDHbDEHL3KLz9h3b9ll9gX7aoqjuhtWXr56+eLFq2fLqy/WVl6trK68fLP65iX91GSWK6REJphMikyCCSSYl8zKdIZ7D6wKy2/fvl189nZldW357erKyi/Pwm/NT01mq6upLLO8mgwyy8l3AWD2ZiqjvQ9erj179Wb1Ffzz7MWbZ2tra8/evFobttkyE8gyq0wgyKw+FWajYTJLiNkIkxAy2SfDbGX57fLy6io449tfVt8tr7xZhjfemUFkMmOZpTQjMksR5pfCu3wgOfvMxDSbFtLpl6IYjLC58PpLcTHI5gT6sU0+++Ud89L6k9nBizX4WVsDcVx7tfZiLQyv4PcL+rENs2Ag6NYAncL/kxrkL4W/LrP/A6XbTL9U5gs0AAAAAElFTkSuQmCC"
+         alt="zk logo"
+         className="<w-12></w-12> h-12 rounded-full"/>
+      
+      <span className="ml-3 text-xl">Zamzam Kitchen</span> </a>
+ 
+ <nav className="md:mr-auto md:ml-4 md:py-1 md:p1-4" >
+   
+   <Link className=" mr-5 hover:text-red-500" href="/about"> About</Link>
+ 
+  <Link className="mr-5 hover:text-red-500" href="/contact"> Contact</Link>
+  <Link className=" mr-5 hover:text-red-500" href="/privacypolicy"> Privacypolicy </Link> 
+
+   
+ </nav>
+
+ <div className="flex space-x-2 mt-1 md:mt-0" >
+  <button className="inline-flex items-center bg-yellow-500 text-white border-0 py-3 foucus:outline-none hover:bg-blue-600 rounded text-base"> LOGIN
+    </button>
+
+
+    
+
+
+    <button className="inline-flex items-center bg-blue-500 text-white border-0 py-3 foucus:outline-none hover:bg-blue-600 rounded text-base"> SINGUP
+    </button>
+
+    </div>
+ 
+
+  
+ </div>
+ 
+
+  
+      
+    </header>
+    </div>
+     )
+}
+
